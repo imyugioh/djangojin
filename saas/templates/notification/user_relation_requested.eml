@@ -1,0 +1,15 @@
+{% block subject %}
+{{user.get_full_name}} requested an additional role on {{organization.printable_name}}
+{% endblock %}
+
+{% block html_content %}
+{{user.get_full_name}} requested an additional role on {{organization.printable_name}}
+{% if reason %}
+<p>
+{{reason|md}}
+</p>
+{% endif %}
+You can grant this request to {{user.get_full_name}} by following this link:
+{{site.as_absolute_uri}}{% url 'saas_role_list' organization.slug %}
+</p>
+{% endblock %}

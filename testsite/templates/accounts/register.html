@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+  <h1>Sign up</div>
+    <div>
+      <form action="/register/{% if next %}?next={{next}}{% endif %}" method="post">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{csrf_token}}">
+        <div>
+            <label>Username</label>
+            {{form.username}}
+        </div>
+        <div>
+            <label>Email</label>
+            {{form.email}}
+        </div>
+        <div>
+            <label>Confirm email</label>
+            {{form.email2}}
+        </div>
+        <div>
+            <label>Password</label>
+            {{form.password}}
+        </div>
+        <div>
+            <label>Confirm password</label>
+            {{form.password2}}
+        </div>
+        <div>
+            <label>First name</label>
+            {{form.first_name}}
+        </div>
+        <div>
+            <label>Last name</label>
+            {{form.last_name}}
+        </div>
+        <div>
+            <label>City</label>
+            {{form.city}}
+        </div>
+        <div>
+            <label>Country</label>
+            {{form.country}}
+        </div>
+        <div>
+            <label>Region</label>
+            {{form.region}}
+        </div>
+        <div>
+            <label>Address</label>
+            {{form.street_address}}
+        </div>
+        <div>
+            <label>Postal code</label>
+            {{form.zip_code}}
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      <div>
+        <p>You already have an account? <a href="/login/">Sign in</a>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block bodyscripts %}
+<script type="text/javascript" charset="utf-8" src="/static/js/djaodjin-postal.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("[name='region']").region({country:$("[name='country']")});
+});
+</script>
+{% endblock %}

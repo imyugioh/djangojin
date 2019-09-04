@@ -1,0 +1,15 @@
+{% block subject %}
+{{provider.printable_name}} Order Confirmation
+{% endblock %}
+
+{% block plain_content %}
+{{provider.printable_name}} Order Confirmation
+
+{% for line in invoiced_items %}
+    {{line.dest_price|humanize_money}}
+    {{line.descr}}
+{% endfor %}
+
+Any questions or comments, email us at {{provider.email}}.
+
+{% endblock %}

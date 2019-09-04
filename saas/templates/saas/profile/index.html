@@ -1,0 +1,31 @@
+{% extends "saas/base_dashboard.html" %}
+
+{% block saas_content %}
+<div id="profile-container">
+<form method="post" action="." @submit.prevent="updateProfile">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{csrf_token}}">
+    {{form.full_name}}
+    {{form.email}}
+    {{form.phone}}
+    {{form.street_address}}
+    {{form.locality}}
+    {{form.postal_code}}
+    {{form.country}}
+    {{form.region}}
+    {{form.is_bulk_buyer}}
+    {% if form.extra %}
+    {{form.extra}}
+    {% endif %}
+    <div>
+        <button type="submit">Update Profile</button>
+    </div>
+</form>
+<div id="remove-profile-container" ng-app="saasApp">
+  <div id="delete-action" ng-controller="organizationProfileCtrl">
+    <div id="delete-action-open">
+        <button type="button" id="delete-organization-btn" ng-click="deleteProfile($event)" @click="deleteProfile">Delete</button>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
